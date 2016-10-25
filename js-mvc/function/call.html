@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>call()函数的行为和apply()相同，只是使用方式不同（参数列表不同）。call()的第1个参数是上下文，后续是实际传入的参数列表。</title>
+    <script>
+        var globe = 'I am globe';
+
+        function say(arg1,arg2,arg3) {
+            console.log(this.globe);
+            console.log(arg1, arg2, arg3);
+        }
+
+        say.call(null, '张三', '李四', '王五');
+    </script>
+</head>
+<body>
+
+</body>
+</html>

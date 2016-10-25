@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一个简单的类库</title>
+    <script>
+        var Class = function() {
+            var klass = function() {
+                /*
+                * 这是使用apply函数的目的不是改变上下文对象，而是为了解析参数列表。
+                * */
+                this.init.apply(this, arguments);
+            };
+
+            klass.prototype.init = function(){};
+
+            return klass;
+        };
+
+        var Person = new Class();
+
+        Person.prototype.init = function(name) {
+            console.log('创建了一个新的person对象。名字叫： ' + name);
+        };
+
+        var person = new Person('John li');
+    </script>
+</head>
+<body>
+
+</body>
+</html>

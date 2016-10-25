@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript中的私有属性</title>
+    <script>
+        var Person = function(){};
+
+        (function() {
+            var findById = function (id) {
+                console.log(id);
+                console.log('调用了findById方法。。');
+            };
+
+            Person.find = function(id) {
+                console.log('调用了findById方法。。', typeof id);
+                if(typeof id !== 'number'){
+                    throw new TypeError('参数类型错误，id必须为整数类型。');
+                }
+                return findById(id);
+            };
+        })();
+
+
+        Person.find(31231241);
+        Person.find('id');
+        findById(12313);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

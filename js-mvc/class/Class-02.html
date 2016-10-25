@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>给类添加函数</title>
+    <script>
+        var Class = function() {
+            var klass = function() {
+                this.init.apply(this, arguments);
+            };
+
+            klass.prototype.init = function(){};
+
+            return klass;
+        };
+
+        var Person = new Class();
+
+        Person.prototype.init = function(name, age) {
+            this.name = name;
+            this.age = age;
+            console.log('初始化了一个person对象。');
+        };
+
+        //添加类方法
+        Person.find = function() {
+            console.log('这是类方法。');
+        };
+
+        //添加实例方法
+        Person.fn = Person.prototype;
+
+        Person.fn.getName = function() {
+            return this.name;
+        };
+
+        Person.fn.getAge = function() {
+            return this.age;
+        };
+
+
+        /*
+        * 调用测试
+        * */
+        var zhangsan = new Person('张三', 22);
+        Person.find();
+
+        console.log(zhangsan.getName(), zhangsan.getAge());
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试发布/订阅模式</title>
+    <script src="../jquery/jquery.js"></script>
+    <script src="PubSub.js"></script>
+    <script>
+        $(function() {
+            PubSub.subscribe('button.click', function() {
+                alert('点击了按钮');
+            });
+
+            PubSub.subscribe('button.click', function () {
+                console.log('点击了按钮，不过时通过控制台打印信息');
+            });
+
+            $('button').click(function() {
+                PubSub.publish('button.click');
+            })
+        })
+    </script>
+</head>
+<body>
+<button>点击触发事件</button>
+</body>
+</html>

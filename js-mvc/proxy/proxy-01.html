@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用apply更换上下文做代理</title>
+    <script>
+        var proxy = function(proxyObj, func) {
+            return function() {
+                return func.apply(proxyObj, arguments);
+            };
+        };
+
+        /*
+        * 运行测试
+        * */
+        var clicky = {
+            name: 'clicky',
+            wasClicked: function (arg1, arg2) {
+                console.log('被代理的点击运行了： name = ' + this.name);
+                console.log(arg1, arg2);
+            },
+            addListeners: function () {
+                function click(cb) {
+                    console.log('点击函数运行了。。。');
+                    cb('这是参数1', '这是参数2');
+                }
+
+                click(proxy(this, this.wasClicked));
+            }
+        };
+
+        clicky.addListeners();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>给类库添加代理函数</title>
+    <script>
+        var Class = function(parent) {
+            var klass = function() {
+                this.init.apply(this, arguments);
+            };
+
+            if(parent) {
+                var subclass = function(){};
+                subclass.prototype = parent.prototype;
+                klass.prototype = new subclass();
+            }
+
+            klass.prototype.init = function(){};
+
+            klass.fn = klass.prototype;
+            klass.fn.parent = klass;
+            klass._super = klass.__proto__;
+
+            //添加代理函数proxy()
+            klass.proxy = function(func) {
+                var self = this;
+                return (function() {
+                    return func.apply(self, arguments);
+                });
+            };
+
+            //将代理函数添加到实例中
+            klass.fn.proxy = klass.proxy;
+
+            //添加加入类方法和实例方法的函数
+            klass.extend = function(obj) {
+                var extended = obj.extended;
+                for(var i in obj) {
+                    klass[i] = obj[i];
+                }
+                if(extended) {
+                    extended(klass);
+                }
+            };
+
+            klass.include = function(obj) {
+                var included = obj.included;
+                for(var i in obj) {
+                    klass.fn[i] = obj[i];
+                }
+                if(included) {
+                    included(klass);
+                }
+            };
+
+            return klass;
+        };
+
+        /*
+        * 运行测试
+        * */
+        var Button = new Class();
+
+        Button.include({
+            init: function (arg) {
+                console.log('初始化了一个按钮，参数是: ' + arg);
+                function click(cb) {
+                    console.log('点击运行了。。。。');
+                    cb('参数1', '参数2');
+                }
+
+                click(this.proxy(this.click));
+            },
+            click: function (arg1, arg2) {
+                console.log('被代理的点击函数运行了。。。。。');
+                console.log(arg1, arg2);
+            }
+        });
+
+        var bt = new Button('初始化参数');
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

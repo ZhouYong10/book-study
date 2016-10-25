@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>给类库添加继承</title>
+    <script>
+        var Class = function(parent) {
+            var klass = function() {
+                this.init.apply(this, arguments);
+            };
+
+            //改变klass的原型，给类库添加继承
+            if(parent) {
+                /*
+                * 这种创建临时匿名函数的技巧避免了在继承时创建父类实例（这里暗示了只有实例属性才会被继承，而非类属性）
+                * 如果父类的初始化很复杂，使用这种方式继承会很省资源
+                * */
+                var subclass = function(){};
+                subclass.prototype = parent.prototype;
+                klass.prototype = new subclass();
+            }
+
+            klass.prototype.init = function(){};
+
+            //定义别名，并建立与原型的关系
+            klass.fn = klass.prototype;
+            klass.fn.parent = klass;
+            klass._super = klass.__proto__;
+
+            //定义添加类方法和实例方法的函数
+            klass.extent = function(obj) {
+                var extended = obj.extended;
+                for(var i in obj) {
+                    klass[i] = obj[i];
+                }
+                if(extended) {
+                    extended(klass);
+                }
+            };
+
+            klass.include = function(obj) {
+                var included = obj.included;
+                for(var i in obj) {
+                    klass.fn[i] = obj[i];
+                }
+                if(included) {
+                    included(klass);
+                }
+            };
+
+            return klass;
+        };
+
+        /*
+        * 运行测试
+        * */
+        var Animal = new Class();
+
+        Animal.include({
+            breath: function () {
+                console.log('breath....');
+            }
+        });
+
+        var Cat = new Class(Animal);
+
+        Cat.include({
+            eat: function () {
+                console.log('I like fish. miao ... .. ');
+            }
+        });
+
+        var tommy = new Cat();
+
+        tommy.breath();
+        tommy.eat();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

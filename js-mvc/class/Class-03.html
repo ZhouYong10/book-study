@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>给类库添加方法</title>
+    <script>
+        var Class = function() {
+            var klass = function() {
+                this.init.apply(this, arguments);
+            };
+
+            klass.prototype.init = function(){};
+
+            //定义prototype的别名
+            klass.fn = klass.prototype;
+
+            //定义类的别名，并将类关联到原型中
+            klass.fn.parent = klass;
+
+            //给类添加属性
+            klass.extent = function(obj) {
+                var extended = obj.extended;
+                for(var i in obj) {
+                    klass[i] = obj[i];
+                }
+                if(extended) {
+                    extended(klass);
+                }
+            };
+
+            //给实例添加属性
+            klass.include = function(obj) {
+                var included = obj.included;
+                for(var i in obj) {
+                    klass.fn[i] = obj[i];
+                }
+                if(included) {
+                    included(klass);
+                }
+            };
+
+            return klass;
+        };
+
+        /*
+        * 运行测试
+        * */
+        var Person = new Class();
+
+        Person.extent({
+            find: function () {
+                console.log('运行类方法find');
+            }
+        });
+
+        Person.include({
+            init: function (name, age) {
+                this.name = name;
+                this.age = age;
+            },
+            getName: function () {
+                return this.name;
+            },
+            getAge: function () {
+                return this.age;
+            }
+        });
+
+        var zhangsan = new Person('张三', 22);
+
+        Person.find();
+
+        console.log(zhangsan.getName(), zhangsan.getAge());
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

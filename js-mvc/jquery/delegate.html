@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用delegate()方法，避免给所有子元素注册事件，同时支持动态添加的子元素都具有事件监听。</title>
+    <style>
+        ul{
+            width: 200px;
+            background-color: yellow;
+        }
+        li{
+            width: 200px;
+            height: 30px;
+            background-color: red;
+            border-bottom-color: #000;
+        }
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        $(function() {
+            $('ul').delegate('button', 'click', function(e) {
+                console.log('点击添加子元素按钮');
+                $('ul').append('<li><button>添加子元素</button></li>');
+            })
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <ul>
+            <li><button>添加子元素</button></li>
+        </ul>
+    </div>
+</body>
+</html>

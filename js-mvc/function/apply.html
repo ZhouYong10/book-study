@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>apply()函数有两个参数： 第1个参数是上下文，第2个参数是参数组成的数组。如果上下文是null，则使用全局对象代替。</title>
+    <script>
+        var globe = 'I an globe';
+
+        function say(arg1,arg2,arg3) {
+            console.log(this.globe);
+            console.log(arg1, arg2, arg3);
+        }
+
+        say.apply(null, ['张三', '李四', '王五']);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试模型</title>
+    <script src="model.js"></script>
+    <script>
+        Model.extend({
+            say: function () {
+                console.log('这是类方法');
+            }
+        });
+
+        Model.include({
+            init: function(name) {
+                this.name = name;
+            },
+            getName: function () {
+                return this.name;
+            }
+        });
+
+        var User = Model.create();
+        User.say();
+
+        var user1 = User.init('zhangsan');
+        console.log(user1.getName());
+        user1.save();
+
+        var user2 = User.init('lisi');
+        user2.save();
+
+        console.log(user1.id);
+        console.log(User.findById(user1.id).getName());
+        console.log(user2.id);
+        console.log(User.findById(user2.id).getName());
+
+
+        user2.destroy();
+        console.log(User.findById(2).name);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试通过原型继承实现深拷贝</title>
+    <script>
+//        function extend(result, source) {
+//            for(var key in source) {
+//                result[key] = source[key];
+//            }
+//            return result;
+//        }
+
+        function extend(o) {
+            var mode = function(){};
+            mode.prototype = o;
+            return new mode();
+        }
+
+        var oOriginal = {
+            memNum: 1,                                      // number
+            memStr: "I am a string",                      // string
+            memObj: {
+                test1: "Old value"                              // we’ll test
+            },
+            memArr: [                                         // array
+                "a string",                                       // string member of array
+                {                                                   // object member of array
+                    test2: "Try changing me"                 // we'll test
+                }
+            ]
+        };
+
+//        var oCopy = extend({}, oOriginal);
+        var oCopy = extend(oOriginal);
+        oCopy.memNum = 2;
+        oCopy.memStr = 'this is oCopy memStr';
+        oCopy.memObj.test1 = 2;
+        oCopy.memArr[0] = 'two str';
+        oCopy.memArr[1].test2 = 'this is test2 of array';
+
+        console.log(oOriginal.memNum);
+        console.log(oOriginal.memStr);
+        console.log(oOriginal.memObj.test1);
+        console.log(oOriginal.memArr[0]);
+        console.log(oOriginal.memArr[1].test2);
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

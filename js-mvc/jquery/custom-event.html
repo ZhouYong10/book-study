@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义事件</title>
+    <style>
+        ul {
+            width: 200px;
+            background-color: yellow;
+        }
+        li{
+            width: 160px;
+            height: 30px;
+            border-bottom:2px #000 solid;
+        }
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        $(function() {
+            var $ul = $('ul');
+
+            $('button').click(function (e) {
+                $ul.trigger('button.add');
+            });
+
+            $ul.bind('button.add', function () {
+                $(this).append('<li><button>被添加的元素</button></li>');
+            });
+
+            $ul.delegate('button', 'click', function(e) {
+                console.log(e.pageX);
+                console.log(e.pageY);
+                $ul.trigger('button.add');
+            })
+        })
+    </script>
+</head>
+<body>
+    <button>点我添加元素</button>
+    <ul></ul>
+</body>
+</html>
