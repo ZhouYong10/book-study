@@ -31,13 +31,18 @@ var ProductRow = React.createClass({
 
 var ProductTable = React.createClass({
     render: function () {
+        var filterText = this.props.filterText;
+        var isStockOnly = this.props.isStockOnly;
         var rows = [];
         var lastCategory = null;
         this.props.products.forEach(function (product) {
             if (product.category !== lastCategory) {
                 rows.push(<ProductCategoryRow category={product.category} key={product.category}/>);
             }
-            rows.push(<ProductRow product={product} key={product.name}/>);
+            if(product.name.indexOf(filterText) !== -1 && (!isStockOnly || product.stocked)) {
+                rows.push(<ProductRow product={product} key={product.name}/>);
+            }
+
             lastCategory = product.category;
         });
         return (
@@ -57,12 +62,18 @@ var ProductTable = React.createClass({
 });
 
 var SearchBar = React.createClass({
+    handleFilterText: function(e) {
+        this.props.onSearchChange({filterText: e.target.value});
+    },
+    handleIsStock: function(e) {
+        this.props.onSearchChange({isStockOnly: e.target.checked});
+    },
     render: function () {
         return (
             <form>
-                <input type="text" placeholder="Search..."/>
+                <input type="text" placeholder="Search..." value={this.props.filterText} onChange={this.handleFilterText}/>
                 <p>
-                    <input type="checkbox"/>
+                    <input type="checkbox" checked={this.props.isStockOnly} onChange={this.handleIsStock}/>
                     {' '} Only show products stock.
                 </p>
             </form>
@@ -71,11 +82,17 @@ var SearchBar = React.createClass({
 });
 
 var FilterableProductTable = React.createClass({
+    onSearchChange: function(data) {
+        this.setState(data);
+    },
+    getInitialState: function() {
+        return {filterText: '', isStockOnly: false};
+    },
     render: function () {
         return (
             <div>
-                <SearchBar/>
-                <ProductTable products={this.props.products}/>
+                <SearchBar filterText={this.state.filterText} isStockOnly={this.state.isStockOnly} onSearchChange={this.onSearchChange}/>
+                <ProductTable products={this.props.products} filterText={this.state.filterText} isStockOnly={this.state.isStockOnly}/>
             </div>
         );
     }
