@@ -62,18 +62,30 @@ var ProductTable = React.createClass({
 });
 
 var SearchBar = React.createClass({
-    handleFilterText: function(e) {
-        this.props.onSearchChange({filterText: e.target.value});
-    },
-    handleIsStock: function(e) {
-        this.props.onSearchChange({isStockOnly: e.target.checked});
+    //handleFilterText: function(e) {
+    //    this.props.onSearchChange({filterText: e.target.value});  //子组件不应该知道父组件的信息
+    //},
+    //handleIsStock: function(e) {
+    //    this.props.onSearchChange({isStockOnly: e.target.checked});
+    //},
+    onUserInput: function(e) {
+        this.props.onSearchChange(
+            this.refs.filterTextInput.value,
+            this.refs.isStockOnlyInput.checked
+        );
     },
     render: function () {
         return (
             <form>
-                <input type="text" placeholder="Search..." value={this.props.filterText} onChange={this.handleFilterText}/>
+                <input type="text" placeholder="Search..."
+                       ref="filterTextInput"
+                       value={this.props.filterText}
+                       onChange={this.onUserInput}/>
                 <p>
-                    <input type="checkbox" checked={this.props.isStockOnly} onChange={this.handleIsStock}/>
+                    <input type="checkbox"
+                           ref="isStockOnlyInput"
+                           checked={this.props.isStockOnly}
+                           onChange={this.onUserInput}/>
                     {' '} Only show products stock.
                 </p>
             </form>
@@ -82,8 +94,11 @@ var SearchBar = React.createClass({
 });
 
 var FilterableProductTable = React.createClass({
-    onSearchChange: function(data) {
-        this.setState(data);
+    onSearchChange: function(filterText, isStockOnly) {
+        this.setState({
+            filterText: filterText,
+            isStockOnly: isStockOnly
+        });
     },
     getInitialState: function() {
         return {filterText: '', isStockOnly: false};
@@ -91,8 +106,13 @@ var FilterableProductTable = React.createClass({
     render: function () {
         return (
             <div>
-                <SearchBar filterText={this.state.filterText} isStockOnly={this.state.isStockOnly} onSearchChange={this.onSearchChange}/>
-                <ProductTable products={this.props.products} filterText={this.state.filterText} isStockOnly={this.state.isStockOnly}/>
+                {/*
+                 <SearchBar filterText={this.state.filterText} isStockOnly={this.state.isStockOnly} onSearchChange={this.onSearchChange}/>
+                 <ProductTable products={this.props.products} filterText={this.state.filterText} isStockOnly={this.state.isStockOnly}/>
+                 此处可以直接使用解析赋值，如下：
+                */}
+                <SearchBar {...this.state} onSearchChange={this.onSearchChange}/>
+                <ProductTable products={this.props.products} {...this.state}/>
             </div>
         );
     }
