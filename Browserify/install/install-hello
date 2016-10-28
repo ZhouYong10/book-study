@@ -1,0 +1,22 @@
+安装：
+要在命令行中使用browserify，首先要安装node，node中包含了npm，然后使用npm安装browserify：
+    npm install -g browserify
+
+Hello-World 一个使用browserify的简单示例：
+打包你的第一个模块文件
+浏览器并没有定义像Node.js中那样的`require`模块加载方法.使用browserify,你就可以在浏览器中使用`require`来加载模块，就像在Node.js中一样。
+下面就是一个简单的示例，展示在命令行中使用browserify将一个名为main.js的文件及其所有的依赖打包为一个独立的文件。
+
+main.js文件：
+    var unique = require('uniq');
+    var data = [1, 2, 2, 3, 4, 5, 5, 5, 6];
+    console.log(unique(data));
+
+使用npm安装uniq模块：
+    npm install uniq
+
+使用browserify将main.js及其依赖打包为一个独立文件bundle.js:
+    browserify main.js -o bundle.js
+
+将打包后的文件bundle.js引入你的html文件：
+    <script src="bundle.js"></script>
