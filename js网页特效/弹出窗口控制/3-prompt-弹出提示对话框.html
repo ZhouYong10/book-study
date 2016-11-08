@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹出提示对话框</title>
+</head>
+<body>
+<input type="button" onclick="display_prompt()" value="Display prompt box">
+
+<script>
+    /*
+    *  prompt(text, defaultText);
+    *  text: 要在提示框中提示的纯文本
+    *  defaultText： 默认的输入文本
+    *  如果用户单击提示框的取消按钮，则返回 null。如果用户单击确认按钮，则返回输入字段当前显示的文本。
+    *  阻塞浏览器
+    * */
+
+    function display_prompt() {
+        var result = prompt('Please enter your name', 'ZhouYong');
+        if(result) {
+            document.write(result);
+        }
+    }
+</script>
+</body>
+</html>

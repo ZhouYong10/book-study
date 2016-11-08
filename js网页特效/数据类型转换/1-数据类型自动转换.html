@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据类型自动转换</title>
+</head>
+<body>
+<h3>自动数据类型转换示例</h3>
+<hr>
+<script>
+    <!--
+    //程序的第一部分：转换为逻辑型数据
+    document.write('<pre>');
+    document.write('转换为逻辑型数据：<br><br>');
+    var a = NaN, b = null, c = undefined, d = 0, e = '';
+    var f = 5, g = 'this';
+    //分别使用声明的各个变量作为判断条件，各个变量会自动转换为Boolean型值
+    if(a) {
+        document.write('NaN 转换为 Boolean 后值为 true<br>');
+    }else {
+        document.write('NaN 转换为 Boolean 后值为 false<br>');
+    }
+
+    if(b) {
+        document.write('null 转换为 Boolean 后值为 true<br>');
+    }else {
+        document.write('null 转换为 Boolean 后值为 false<br>');
+    }
+
+    if(c) {
+        document.write('undefined 转换为 Boolean 后值为 true<br>');
+    }else {
+        document.write('undefined 转换为 Boolean 后值为 false<br>');
+    }
+
+    if(d) {
+        document.write('数字 0 转换为 Boolean 后值为 true<br>');
+    }else {
+        document.write('数字 0 转换为 Boolean 后值为 false<br>');
+    }
+
+    if(e) {
+        document.write('空字符串 转换为 Boolean 后值为 true<br>');
+    }else {
+        document.write('空字符串 转换为 Boolean 后值为 false<br>');
+    }
+
+    if(f) {
+        document.write('非零数字 5 转换为 Boolean 后值为 true<br>');
+    }else {
+        document.write('非零数字 5 转换为 Boolean 后值为 false<br>');
+    }
+
+    if(g) {
+        document.write('非空字符串 ' + g + ' 转换为 Boolean 后值为 true<br>');
+    }else {
+        document.write('非空字符串 ' + g + ' 转换为 Boolean 后值为 false<br>');
+    }
+
+    //程序的第二部分：转换为数值类型数据
+    document.write('<hr>转换为数值型数据：<br>');
+    var a = true, b = false, c = undefined, d = null, e = '5', f = '';
+    //通过加1减1操作
+    document.write('<br> a = ' + a + '; a 转换为数值是： ' + (a + 1 - 1));
+    document.write('<br> b = ' + b + '; b 转换为数值是： ' + (b + 1 - 1));
+    document.write('<br> c = ' + c + '; c 转换为数值是： ' + (c + 1 - 1));
+    document.write('<br> d = ' + d + '; d 转换为数值是： ' + (d + 1 - 1));
+    //通过两次取反操作
+    document.write('<br> e = ' + '"' + e + '"' + '; e 转换为数值是： ' + (-(-e)));
+    document.write('<br> f = ' + '"' + f + '"' + '; f 转换为数值是： ' + (-(-f)));
+
+    //程序的第三部分：转换为字符串类型数据
+    document.write('<hr>转换为字符串型数据：<br>');
+    var a = true, b = false, c = undefined, d = null;
+    var e = NaN, f = 0, g = 6;
+    //通过使用空字符串与变量连接，将变量转换为字符串
+    document.write('<br> a = ' + a + '; a 转换为字符串后的值为： ' + (a + ''));
+    document.write('<br> b = ' + b + '; b 转换为字符串后的值为： ' + (b + ''));
+    document.write('<br> c = ' + c + '; c 转换为字符串后的值为： ' + (c + ''));
+    document.write('<br> d = ' + d + '; d 转换为字符串后的值为： ' + (d + ''));
+    document.write('<br> e = ' + e + '; e 转换为字符串后的值为： ' + (e + ''));
+    document.write('<br> f = ' + f + '; f 转换为字符串后的值为： ' + (f + ''));
+    document.write('<br> g = ' + g + '; g 转换为字符串后的值为： ' + (g + ''));
+
+    document.write('</pre>');
+    //-->
+</script>
+</body>
+</html>

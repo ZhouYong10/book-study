@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显式类型转换</title>
+</head>
+<body>
+<h1>数据类型显式转换示例</h1>
+
+<script>
+    <!--
+    //首先使用 toLowerCase 方法
+    var myString = ' ABCdeFg';
+    var lowerCased = myString.toLowerCase();
+    var upperCased = myString.toUpperCase();
+    document.write(myString + ' 转换为小写字母后为： ' + lowerCased + '<br>');
+    document.write(myString + ' 转换为大写字母后为： ' + upperCased + '<br>');
+    document.write('<br>');
+
+    var a = typeof (toString(NaN));
+    var b = typeof (toString(true));
+    var c = parseInt('');
+    var d = parseInt('5');
+    var e = parseInt('this');
+    var f = parseInt(true);
+    var g = typeof(d);
+    var h = typeof(parseFloat('5'));
+    //输出各变量的值
+    document.write('toString(NaN)的类型为： ' + a + '<br>');
+    document.write('toString(true)的类型为： ' + b + '<br>');
+    document.write('parseInt("")的结果为： ' + c + '<br>');
+    document.write('parseInt("5")的结果为： ' + d + '<br>');
+    document.write('parseInt("this")的结果为： ' + e + '<br>');
+    document.write('parseInt(true)的结果为： ' + f + '<br>');
+    document.write('parseInt("5")的类型为： ' + g + '<br>');
+    document.write('parseFloat("5")的类型为： ' + h + '<br>');
+    //-->
+</script>
+</body>
+</html>

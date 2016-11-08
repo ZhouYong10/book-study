@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹出警告对话框</title>
+</head>
+<body>
+<input type="button" onclick="display_alert()" value="Display alert box"/>
+
+<script>
+    /*
+    *  alert(message);
+    *  message: 是纯文本，而非html
+    *  无返回值
+    *  阻塞浏览器
+    * */
+    function display_alert() {
+        var result = alert('I am an alert box!');
+        document.write(result, '==================');
+    }
+</script>
+</body>
+</html>

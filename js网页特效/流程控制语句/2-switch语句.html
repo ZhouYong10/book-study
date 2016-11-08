@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>switch语句</title>
+</head>
+<body>
+<h1>switch语句举例</h1>
+<hr>
+<pre>
+    《红楼梦》判词
+    <ol>
+        <li>宝钗黛玉判词</li>
+        <li>元春判词</li>
+        <li>探春判词</li>
+        <li>迎春判词</li>
+        <li>惜春判词</li>
+    </ol>
+</pre>
+
+<p>请输入一个数字，程序会根据您的输入给出不同的判词。</p>
+<form id="form1">
+    <input type="text" id="Num" name="Num" size="20" value="请在这里输入一个数字！"/>
+    <input type="button" value="看一下" onclick="NumSubmit();"/>
+</form>
+
+<script>
+    <!--
+    function NumSubmit() {
+        var inputNum = form1.Num.value;
+
+        if(isNaN(inputNum)){
+            alert('输入不是数字！');
+        }else {
+            if(inputNum === ''){
+                alert('输入不能为空！');
+            }else{
+                switch (inputNum) {
+                    case '1':
+                        alert('可叹停机德，堪怜咏絮才。\n\n玉带林中挂，金簪雪里埋。');
+                        break;
+                    case '2':
+                        alert('二十年来辨是非，榴花开处照宫闱。\n\n三春争及初春景。虎兔相逢大梦归。');
+                        break;
+                    case '3':
+                        alert('才自精明志自高，生于末世运偏消。\n\n清明涕送江边望，千里东风一梦遥。');
+                        break;
+                    case '4':
+                        alert('子系中山狼，得志便猖狂。\n\n金闺花柳质，一载赴黄梁。');
+                        break;
+                    case '5':
+                        alert('堪破三春景不长，缁衣顿改昔年妆。\n\n可怜绣户侯门女，独卧青灯古佛旁。');
+                        break;
+                    default:
+                        alert('输入的数值超出范围！');
+                        break;
+                }
+            }
+        }
+    }
+    //-->
+</script>
+</body>
+</html>

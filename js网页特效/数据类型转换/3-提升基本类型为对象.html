@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提升基本类型为对象</title>
+</head>
+<body>
+<h1>提升基本类型为对象</h1>
+<script>
+    <!--
+    //定义一个数组
+    var myArr = new Array();
+    for(var i = 0; i < 10; i++) {
+        myArr[i] = i * i;
+    }
+
+    document.write('<br>myArr的类型为： ' + typeof(myArr));
+    document.write('<br>直接输出myArr的内容为： ' + myArr);
+    document.write('<br>myArr的内容为： ');
+    for(var i = 0; i < myArr.length; i++) {
+        document.write(myArr[i] + '&nbsp;');
+    }
+
+    var str1 = myArr.join();
+    document.write('<br><br>str1的类型为： ' + typeof(str1));
+    document.write('<br>str1的内容为： ' + str1);
+
+    var len = str1.length;
+    var link = str1.link('http://www.baidu.com');
+    var big = str1.big();
+    var bold = str1.bold();
+    var color = str1.fontcolor('red');
+
+    document.write('<br><br>str1的长度为： ' + len);
+    document.write('<br>str1应用link后的结果为： ' + link);
+    document.write('<br>str1应用big后的结果为： ' + big);
+    document.write('<br>str1应用bold后的结果为： ' + bold);
+    document.write('<br>str1应用fontcolor后的结果为： ' + color);
+
+    var firstOne = str1.indexOf('1');
+    var lastOne = str1.lastIndexOf('1');
+    var theTenthChar = str1.charAt(9);
+
+    document.write('<br><br>数字"1"在str1中第一次出现的位置是： ' + firstOne);
+    document.write('<br>数字"1"在str1中最后一次出现的位置是： ' + lastOne);
+    document.write('<br>str1的第10个字符为： ' + theTenthChar);
+    //-->
+</script>
+</body>
+</html>

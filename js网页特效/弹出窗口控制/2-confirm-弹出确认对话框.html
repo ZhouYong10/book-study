@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹出确认对话框</title>
+</head>
+<body>
+<input type="button" onclick="display_confirm()" value="Display confirm box">
+
+<script>
+    /*
+    *  confirm(message);
+    *  message: 是纯文本，而非html
+    *  返回true或者false(点击确认返回true，否则返回false)
+    *  阻塞浏览器
+    * */
+
+    function display_confirm() {
+        var result = confirm('Press a button!');
+        if(result) {
+            document.write('You pressed OK!');
+        }else{
+            document.write('You pressed Cancel!');
+        }
+    }
+
+</script>
+</body>
+</html>

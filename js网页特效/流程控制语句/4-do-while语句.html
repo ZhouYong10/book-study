@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>do while语句</title>
+</head>
+<body>
+<h1>do while语句应用举例</h1>
+<hr>
+<form id="form1">
+    <input type="text" id="num1" name="num1" size="15" placeholder="请在这里输入行数！"/>
+    <input type="text" id="num2" name="num2" size="15" placeholder="请在这里输入列数！"/>
+    <input type="button" value="列表格" onclick="NumSubmit();"/>
+</form>
+
+<script>
+    function NumSubmit() {
+        var num1 = form1.num1.value;
+        var num2 = form1.num2.value;
+
+        if(isNaN(num1) || isNaN(num2)){
+            alert('输入的行或列不是数值！');
+        }else{
+            if(num1 =='' || num2 == ''){
+                alert('输入的行或列不能为空！');
+            }else{
+                showTable(num1, num2);
+            }
+        }
+    }
+
+    function showTable(num1, num2) {
+        var m = 1, n = 1;
+
+        if(num1 < 1 || num2 < 1) {
+            alert('输入的行或列的值太小！');
+            return;
+        }
+
+        if(num1 > 100 || num2 > 100) {
+            alert('输入的行或列的值太大！');
+            return;
+        }
+
+        document.write('<heand><title>while循环示例</title></heand>');
+        document.write('使用while循环语句画出的');
+        document.write(num1 + '行' + num2 + '列的表格：<br><br>');
+
+        document.write('<table border="1" bordercolor="green" ');
+        document.write('cellpadding="10" cellspacing="10">');
+        do{
+            document.write('<tr>');
+            do{
+                document.write('<td align="center">第' + m + '行第' + n + '列</td>');
+                n++;
+            }while(n <= num2);
+            document.write('</tr>');
+            m++;
+            n = 1;
+        }while(m <= num1);
+        document.write('</table>');
+    }
+</script>
+</body>
+</html>
